@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nosso Casamento</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <style>
+        .font-cursive { font-family: 'Great Vibes', cursive; }
+        body { font-family: 'Montserrat', sans-serif; }
+    </style>
+</head>
+<body class="bg-stone-50 text-stone-800">
+
+    <div class="min-h-screen flex flex-col items-center justify-center p-4">
+        <div class="max-w-md w-full bg-white rounded-3xl shadow-2xl overflow-hidden text-center">
+            
+            <div class="h-80 overflow-hidden relative">
+                <img src="foto.jpg" alt="Nossa Foto" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-black/10"></div>
+            </div>
+
+            <div class="px-8 py-10">
+                <h1 class="font-cursive text-5xl text-amber-700 mb-4">Maria & João</h1>
+                <p class="italic text-stone-500 mb-8">"O amor é a maior aventura de todas."</p>
+
+                <div id="countdown" class="grid grid-cols-2 gap-4 mb-8 text-amber-900 font-bold uppercase text-xs tracking-widest">
+                    </div>
+
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSe_a-0lIwKUp2WOkLWtIwt17rOBZdJeobMuheZ9VRwUYIWZXA/viewform?usp=publish-editor" target="_blank" 
+                   class="inline-block w-full bg-amber-700 hover:bg-amber-800 text-white font-bold py-4 rounded-full transition duration-300 shadow-lg transform hover:-translate-y-1">
+                    Confirmar Presença
+                </a>
+
+                <div class="mt-8 border-t pt-6">
+                    <p class="text-[10px] uppercase tracking-[0.2em] text-stone-400 mb-4 font-bold">Dê o play e celebre conosco</p>
+                    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/2S9Yv8fX0N2S4Kz6XqXQ?utm_source=generator" width="100%" height="80" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Efeito de Confetes
+        window.onload = () => {
+            confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 }, colors: ['#b45309', '#f59e0b', '#d6d3d1'] });
+        };
+
+        // Lógica da Contagem Regressiva (Altere a data abaixo!)
+        const dataCasamento = new Date("Dec 31, 2026 18:00:00").getTime();
+        const countdownEl = document.getElementById("countdown");
+
+        setInterval(() => {
+            const agora = new Date().getTime();
+            const diff = dataCasamento - agora;
+            const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const horas = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            
+            if (diff > 0) {
+                countdownEl.innerHTML = `<div><span class='block text-2xl'>${dias}</span> Dias</div><div><span class='block text-2xl'>${horas}</span> Horas</div>`;
+            } else {
+                countdownEl.innerHTML = "<div class='col-span-2 text-xl'>Chegou o Grande Dia!</div>";
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
